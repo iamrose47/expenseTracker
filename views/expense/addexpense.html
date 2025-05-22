@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExpenseBuzz-Add your expense</title>
+    <link rel="stylesheet" href="../../styles/addexpense.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+<header class="header">
+       <h3>Day to Day Expenses</h3>
+      <nav id="nav">
+         <button id="nav-daily-btn" class="nav-btn active">Daily</button>
+         <button id="nav-monthly-btn" class="nav-btn">Monthly</button>
+         <button id="nav-yearly-btn" class="nav-btn">Yearly</button>
+      </nav>
+        
+      <!-- -------------user-section------------- -->
+    
+     <!-- user -->
+     <section class="user-container" id="user-container">
+      <div class="user" id="user">
+        <div class="user-name">
+          <span class="fa-stack" >
+            <i class="fa-solid fa-user" style="color: #2d7619;"></i>
+          </span>
+          <h3 id="user-name">Rajkumar Jangam</h3>
+          <p id="user-email">rajkumarjangam66@gmail.com</p>
+        </div>
+        <div class="user-profile">
+          <div id="premium-feature" class="features">
+            <button id="leaderboard-btn" onclick="openLeaderBoard()">
+              &nbsp;<i class="fa fa-tasks" aria-hidden="true"></i
+              >&nbsp;Leaderboard
+            </button>
+            <button id="download-btn">
+              &nbsp;<i class="fa fa-download" aria-hidden="true"></i
+              >&nbsp;Download Data
+            </button>
+            <button id="download-history-btn" onclick="openDownloadHistory()">
+              &nbsp;<i class="fa fa-history" aria-hidden="true"></i>&nbsp;All
+              Downloads
+            </button>
+         
+          </div>
+          <div id="normal-feature" class="features">
+            <h3>ExpenseBuzz Premium Features</h3>
+            <ul class="premium-feature-list">
+              <li>
+                <i class="fa fa-calculator" aria-hidden="true"></i> Monthly
+                Expenses <br />
+                <p>See total expense of a month</p>
+              </li>
+              <li>
+                <i class="fa fa-calendar" aria-hidden="true"></i> Yearly
+                Expenses <br />
+                <p>See month-wise expense of a year</p>
+              </li>
+              
+              
+              <li>
+                <i class="fa fa-tasks" aria-hidden="true"></i> Leaderboard
+                <br />
+                <p>See your expense compare to others</p>
+              </li>
+              <li>
+                <i class="fa fa-download" aria-hidden="true"></i> Download
+                features <br />
+                <p>Get your data and download history</p>
+              </li>
+            </ul>
+            <div class="upgrade-btn">
+              <button id="rzp-button"> <i class="fa fa-angle-double-up" aria-hidden="true"></i
+                >&nbsp; Upgrade Now</button>
+            </div>
+          </div>
+        </div>
+         
+          <button class="logout" id="logout">
+            <i class="fa fa-sign-out" aria-hidden="true"></i>Logout
+          </button>
+        
+      </div>
+      <button class="user-btn" id="user-btn" onclick="showhideprofile()">
+        <i class="fa fa-user-circle"></i>
+      </button>
+    </section> 
+
+       <!-- -----------------toast---------------- -->
+    <section class="toast" id="toast">
+      <div class="toast-content" id="toast-content">
+        <i
+        class="fa fa-check-circle fa-2x"
+        aria-hidden="true"
+        style="color: green"
+      ></i>
+      <div class="message">
+        <span class="text text-1">Success</span>
+        <span class="text text-2">Your changes has been saved</span>
+      </div>
+      </div>
+
+    </section>
+</header>
+<main>
+<div class="main-container">
+    <div id="flex-container">
+
+        <!-- ------------------daily-expense table------------------- -->
+        <section class="container" id="daily-container">
+            <div class="info-bar" id="daily-info-bar">
+                <button class="left-btn info-btn">
+                  <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                </button>
+                <span class="date" id="0"></span>
+                <button class="right-btn info-btn">
+                  <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                </button>
+              </div>
+
+              <div class="expense-container" id="daily-expense-container">
+                
+             
+<!--                   
+                <div class="expense-bar">
+                  <div class="bar">
+                      <button class="bar-des-btn" id="bar-des-btn"><i class="fa-regular fa-eye"  id="${expenseData.id}-eye-open"  style="display:block;  font-size:1.5rem;" onClick=eyeOpenFunc("${expenseData.id}-eye-open","${expenseData.id}-eye-close","${expenseData.id}-des")></i><i class="fa-solid fa-eye-slash" id="${expenseData.id}-eye-close" style="display:none; font-size:1.5rem;"  onClick=eyeCloseFunc("${expenseData.id}-eye-open","${expenseData.id}-eye-close","${expenseData.id}-des")></i></button>
+                      <div class="amount">&nbsp;<i class="fa fa-inr" aria-hidden="true" style="font-size: 0.95rem;"></i></div>
+                     
+                
+                          <button class="bar-delete-btn"></button>
+                    
+                      
+                  </div>
+                  <div class="description" id="des"></div>
+              </div> -->
+ 
+
+              </div>
+              <div class="daily-total">
+                Total = &nbsp;<span id="daily-sum">0</span>
+                <i class="fa fa-inr" aria-hidden="true" style="font-size: 0.95rem;"></i>
+              </div>
+        </section>
+
+        <!-- ------------------monthly-expense table------------------- -->
+        <section class="container" id="monthly-container">
+          <div class="info-bar" id="monthly-info-bar">
+              <button class="left-btn info-btn">
+                <i class="fa fa-chevron-left" aria-hidden="true"></i>
+              </button>
+              <span class="month" id="0">June 2023</span>
+              <button class="right-btn info-btn">
+                <i class="fa fa-chevron-right" aria-hidden="true"></i>
+              </button>
+            </div>
+
+            <div class="expense-container" id="monthly-expense-container">
+            
+              <div class="expense-bar monthly-expense-bar" id="monthly-expense-bar" >
+                 <!-- <div class="expense-bar-child">
+                    <h3>12 May</h3>
+                  <div class="bar monthly-bar ">
+                      <span>Category </span>  <span>Shopping</span>
+                      <span>12000&nbsp;<i class="fa fa-inr" aria-hidden="true" style="font-size: 0.95rem;"></i></span>
+                      
+                 </div>
+                  
+              </div> -->
+            </div>
+
+            </div>
+            <div class="monthly-total">
+              Total Monthly Expense =&nbsp;<span id="monthly-sum">0</span>
+              <i class="fa fa-inr" aria-hidden="true" style="font-size: 0.95rem;"></i>
+            </div>
+      </section>
+
+      <!-- ------------------yearly-expense table------------------- -->
+      <section class="container" id="yearly-container">
+        <div class="info-bar" id="yearly-info-bar">
+            <button class="left-btn info-btn">
+              <i class="fa fa-chevron-left" aria-hidden="true"></i>
+            </button>
+            <span class="year" id="0">2023</span>
+            <button class="right-btn info-btn">
+              <i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
+
+          <div class="expense-container" id="yearly-expense-container">
+            <div class="expense-bar  yearly-expense-bar"  id="yearly-expense-bar">
+              
+                 <!-- <div class="expense-bar-child">
+                    <h3>12 May</h3>
+                  <div class="bar yearly-bar ">
+                      <span>Category </span> 
+                      <span>12000&nbsp;<i class="fa fa-inr" aria-hidden="true" style="font-size: 0.95rem;"></i></span>
+                      
+                 </div>
+                  <div class=" totalMonthlyExpense" >Shopping</div>
+              </div> -->
+                
+            </div>
+
+          </div>
+          <div class="yearly-total">
+            Total Yearly Expense = &nbsp;<span id="yearly-sum">0</span>
+            <i class="fa fa-inr" aria-hidden="true" style="font-size: 0.95rem;"></i>
+          </div>
+    </section>
+
+    <!-- -----------------leaderboard-------------- -->
+<section class="conatiner" id="leaderboard-container">
+  <div class="info-bar" >
+    <span class="leaderboard-heading">
+      Leaderboard&nbsp;<i
+                class="fa fa-sort-amount-asc"
+                aria-hidden="true"
+              ></i
+            >
+    </span>
+    
+  </div>
+
+  <div class="expense-container" id="leaderboard-expense-container">
+  <div class="expense-bar leadernoardexpense-bar"  id="leaderboard-expense-bar">
+<!-- <div class="bar">
+<div class="user-name">Rajkumar Jangam</div>
+<div class="user-total">4000 &#x20B9;</div>
+</div> -->
+  </div>
+  </div>
+  
+  <!-- <div class="leaderboard-history">
+    <button id="leaderboard-btn2">
+      <i class="fa fa-tasks" aria-hidden="true"></i>&nbsp;LeaderBoard
+    </button>
+    <button id="download-history-btn2">
+      <i class="fa fa-history fa-lg" aria-hidden="true"></i
+      >&nbsp;History
+    </button>
+  </div> -->
+
+
+</section>
+
+    <!--------------------download-history------------------>
+    <section class="conatiner" id="history-container">
+      <div class="info-bar" >
+        <span class="history-heading">
+          Download History&nbsp;<i class="fa fa-history fa-lg" aria-hidden="true"></i>
+        </span>
+       
+      </div>
+    
+      <div class="expense-container" id="history-expense-container">
+      <div class="expense-bar history-bar"  id="history-expense-bar">
+    <!-- <div class="bar">
+    <div class="downloaded-time">16 may2023</div>
+    <div class="link"><a href="${historyData.fileUrl}" download><button><i class="fa fa-download fa-lg" aria-hidden="true"></i
+      ></button></a></div>
+    </div> -->
+      </div>
+      </div>
+      
+      <!-- <div class="leaderboard-history">
+        <button id="leaderboard-btn2">
+          <i class="fa fa-tasks" aria-hidden="true"></i>&nbsp;LeaderBoard
+        </button>
+        <button id="download-history-btn2">
+          <i class="fa fa-history fa-lg" aria-hidden="true"></i
+          >&nbsp;History
+        </button>
+      </div> -->
+    
+    
+    </section>
+    </div>
+</div>
+
+
+</main>
+<footer>
+  
+  <!-- ----------------pagination----------------- -->
+  <section class="pagination" id="pagination-container">
+    
+    <label for="rows-per-page">Row-per-page:</label>
+    <select name="rows-per-page" id="rows-per-page" >
+      <option value="5" selected>5</option>
+      <option value="8" >8</option>
+      <option value="10" >10</option>
+      
+      <option value="20" >20</option>
+      <option value="40" >40</option>
+    </select>
+  
+    <span id="page-info">1-5 of X</span>
+        <span class="page-btns" id="1">
+          <button id="page-btn-left" disabled>
+            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+          </button>
+          &nbsp;&nbsp;&nbsp;
+          <button id="page-btn-right" disabled>
+            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+          </button>
+        </span>
+  </section>
+
+  <!-- ---------------------------add-expense-section-------------------- -->
+  <section id="add-expense-container" >
+    <div class="add-expense" id="add-expense">
+      <h3 >Add Expense</h3>
+      <form>
+        <div class="form-control">
+          <select name="category" id="category">
+            <option value="" selected>Select Category</option>
+            <option value="Movie">Movie</option>
+            <option value="Vacation">Vacation</option>
+            <option value="Travel">Travel</option>
+            <option value="Medical">Medical</option>
+            <option value="Grocery">Grocery</option>
+            <option value="Life-Style">Life-Style</option>
+          </select>
+        </div>
+        <div class="form-control">
+          <input
+          type="number"
+          name="amount"
+          required
+          placeholder="Enter Amount"
+        />
+        </div>
+        <div class="form-control">
+          <textarea
+            name="description"
+            id="description-input"
+            cols="10"
+            rows="7"
+            placeholder="Describe here"
+          ></textarea>
+        </div>
+        <button class="add-expense-btn" type="submit">Submit</button>
+      </form>
+    </div>
+    
+    
+    
+  
+  </section>
+  <div class="plus-cross-btn-div" id="plus-cross-btn-div">
+    <button class="plus-btn" id="plus-btn">+</button>
+    <button class="cross-btn" id="cross-btn">×</button>
+  </div>
+  
+ 
+
+  <h1>ExpenseBuzz&nbsp;<sup id="pro"></sup></h1>
+</footer>
+
+<script src="../../scripts/profile.js" ></script>
+<script src="../../scripts/expense.js"></script>
+<script src="../../scripts/toast.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</body>
+</html>

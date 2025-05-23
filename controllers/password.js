@@ -44,7 +44,7 @@ exports.postForgotPassword = async (req, res, next) => {
     });
 
     const sender = {
-      email: 'rajkumarjangam66@gmail.com',
+      email: 'rosesinghlalotra@gmail.com',//only verified id can be put here
       name: 'ExpenseBuzz',
     };
 
